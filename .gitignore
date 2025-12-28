@@ -41,3 +41,5 @@ app-example
 # generated native folders
 /ios
 /android
+setup_android_signing.py
+/converter-app-release-key.keystore

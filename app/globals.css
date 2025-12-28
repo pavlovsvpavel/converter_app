@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .bg-bgnd {
+        @apply bg-[#ffffff] dark:bg-[#000000];
+    }
+
+    .bg-card {
+        @apply bg-[#e4e4e4] dark:bg-[#252525] rounded-xl;
+    }
+
+    .text-primary {
+        @apply text-[#121212] dark:text-[#FFFFFF];
+    }
+
+    .text-secondary {
+        @apply text-[#686868] dark:text-[#BDBDBD];
+    }
+
+    .border-default {
+        @apply border-[#7c7c7c] dark:border-[#FFFFFF];
+    }
+
+    .border-focused{
+        @apply border-[#3B82F6] dark:border-[#3B82F6];
+    }
+
+    .input-bgnd {
+        @apply bg-[#ffffff] dark:bg-[#121212];
+    }
+
+    .input-default {
+        @apply input-bgnd border rounded-lg px-3 py-2.5 text-base;
+    }
+
+    .expandable-btn {
+        @apply flex-row items-center justify-between py-3 px-4 bg-bgnd rounded-lg;
+    }
+}

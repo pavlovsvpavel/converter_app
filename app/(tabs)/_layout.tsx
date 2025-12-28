@@ -1,35 +1,94 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import {useTheme} from '@/contexts/ThemeContext';
+import {Text} from '@/components/Themed';
+import CustomScreenContainer from "@/components/CustomScreenContainer";
+import {Ionicons} from "@expo/vector-icons";
+import {TabIconProps} from "@/interfaces/interfaces";
+import {Tabs} from "expo-router";
+import {themeColors} from "@/constants/colors";
+import React from "react";
+import {useTranslation} from "react-i18next";
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
-  );
+function TabIcon({focused, color, size, name}: TabIconProps) {
+    return (
+        <Ionicons
+            name={name}
+            size={focused ? size + 4 : size}
+            color={color}
+        />
+    );
 }
+
+function TabsLayout() {
+    const {theme} = useTheme();
+    const colors = themeColors[theme];
+    const {t} = useTranslation();
+
+    return (
+        <CustomScreenContainer>
+            <Tabs
+                screenOptions={{
+                    tabBarShowLabel: true,
+                    headerShown: false,
+                    tabBarActiveTintColor: colors.tabBarActive,
+                    tabBarInactiveTintColor: colors.tabBarInactive,
+                    tabBarStyle: {
+                        elevation: 0,
+                        backgroundColor: colors.tabBarBackground,
+                        height: 55,
+                        paddingBottom: 10,
+                        paddingTop: 10,
+                        borderTopWidth: 0,
+                    },
+                    tabBarItemStyle: {
+                        flex: 1,
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    },
+                    tabBarLabel: ({focused, color, children}) => (
+                        <Text
+                            weight={focused ? 'bold' : 'normal'}
+                            style={{color: color, fontSize: 10, marginTop: 2}}
+                        >
+                            {children}
+                        </Text>
+                    ),
+                }}>
+                <Tabs.Screen
+                    name="home"
+                    options={{
+                        title: t('home'),
+                        headerShown: false,
+                        tabBarIcon: ({focused, color, size}) => (
+                            <TabIcon
+                                focused={focused}
+                                color={color}
+                                size={size}
+                                name={focused ? 'home' : 'home-outline'}
+                            />
+                        ),
+                    }}
+                />
+                <Tabs.Screen
+                    name="settings"
+                    options={{
+                        title: t('settings'),
+                        headerShown: false,
+                        tabBarIcon: ({focused, color, size}) => (
+                            <TabIcon
+                                focused={focused}
+                                color={color}
+                                size={size}
+                                name={focused ? 'settings' : 'settings-outline'}
+                            />
+                        ),
+                    }}
+                />
+            </Tabs>
+        </CustomScreenContainer>
+    );
+}
+
+export default React.memo(TabsLayout);
+
+

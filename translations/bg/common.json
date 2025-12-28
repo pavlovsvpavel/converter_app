@@ -1,0 +1,17 @@
+{
+  "home": "Начало",
+  "settings": "Настройки",
+  "changeLanguage": "Промяна език",
+  "theme": "Тема",
+  "automatic": "Автоматично",
+  "light": "Светъл",
+  "dark": "Тъмен",
+  "tools": "Инструменти",
+  "currency-converter": "Конвертор на валута",
+  "currency": "Валута",
+  "change-calculator": "Калкулатор на ресто",
+  "bill-amount": "Сметка сума",
+  "paid-amount": "Платена сума",
+  "change-to-return": "Ресто",
+  "rate": "Обменен курс"
+}

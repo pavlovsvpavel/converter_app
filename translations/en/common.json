@@ -1,0 +1,17 @@
+{
+  "home": "Home",
+  "settings": "Settings",
+  "changeLanguage": "Change language",
+  "theme": "Theme",
+  "automatic": "Automatic",
+  "light": "Light",
+  "dark": "Dark",
+  "tools": "Tools",
+  "currency-converter": "Currency Converter",
+  "currency": "Currency",
+  "change-calculator": "Change Calculator",
+  "bill-amount": "Bill Amount",
+  "paid-amount": "Paid Amount",
+  "change-to-return": "Change to return",
+  "rate": "Exchange rate"
+}
