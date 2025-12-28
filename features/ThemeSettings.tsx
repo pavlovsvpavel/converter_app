@@ -18,12 +18,12 @@ export default function ThemeSettings() {
         <View className="mt-5">
             <TouchableOpacity className="expandable-btn" onPress={toggleExpand}>
                 <View className="flex-row items-center">
-                    <MaterialCommunityIcons name="theme-light-dark" size={20} color="#6B7280"/>
+                    <MaterialCommunityIcons name="theme-light-dark" size={20} color="#3b82f6"/>
                     <Text className="ml-3 text-base text-primary" weight="semibold">
                         {t('theme')}
                     </Text>
                 </View>
-                <Ionicons name={isExpanded ? "chevron-up" : "chevron-down"} size={20} color="#6B7280"/>
+                <Ionicons name={isExpanded ? "chevron-up" : "chevron-down"} size={20} color="#3b82f6"/>
             </TouchableOpacity>
 
             {isExpanded && (

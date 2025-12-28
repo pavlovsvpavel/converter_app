@@ -21,3 +21,10 @@ export interface CurrencyInputProps {
     currencyLabel: string;
     placeholder?: string;
 }
+
+export interface ThemeContextType {
+    theme: 'light' | 'dark';
+    themePreference: ThemePreference;
+    setThemePreference: (preference: ThemePreference) => void;
+    isThemeLoading: boolean;
+}

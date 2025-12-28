@@ -1,17 +1,20 @@
 {
   "home": "Начало",
   "settings": "Настройки",
-  "changeLanguage": "Промяна език",
+  "changeLanguage": "Промяна на език",
   "theme": "Тема",
   "automatic": "Автоматично",
   "light": "Светъл",
   "dark": "Тъмен",
   "tools": "Инструменти",
   "currency-converter": "Конвертор на валута",
+  "converted-amount": "Конвертирана сума",
   "currency": "Валута",
   "change-calculator": "Калкулатор на ресто",
-  "bill-amount": "Сметка сума",
-  "paid-amount": "Платена сума",
+  "bill-amount": "Общо сума",
+  "please-enter-bill-amount": "Моля въведете общо сума",
+  "paid-amount": "Сума в брой",
+  "please-enter-paid-amount": "Моля въведете сума в брой",
   "change-to-return": "Ресто",
   "rate": "Обменен курс"
 }

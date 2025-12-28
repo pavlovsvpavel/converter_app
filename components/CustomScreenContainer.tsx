@@ -9,7 +9,7 @@ type ScreenContainerProps = {
 
 export default function CustomScreenContainer({
                                             children,
-                                            edges = ['top', 'left', 'right', 'bottom'],
+                                            edges = ['top', 'left', 'right'],
                                         }: ScreenContainerProps) {
     return (
         <SafeAreaView edges={edges} className="flex-1 px-2 bg-bgnd">

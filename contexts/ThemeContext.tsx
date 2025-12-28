@@ -1,19 +1,11 @@
 import {createContext, useState, useContext, useEffect, ReactNode, useMemo, useCallback} from 'react';
 import {useColorScheme} from 'nativewind';
 import * as SecureStore from 'expo-secure-store';
-import {PageLoadingSpinner} from '@/components/PageLoadingSpinner';
-
+import {ThemeContextType} from "@/interfaces/interfaces";
 
 type ThemePreference = 'light' | 'dark' | 'system';
 
-interface ThemeContextType {
-    theme: 'light' | 'dark';
-    themePreference: ThemePreference;
-    setThemePreference: (preference: ThemePreference) => void;
-}
-
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
 const THEME_PREFERENCE_KEY = 'theme-preference';
 
 export const ThemeProvider = ({children}: { children: ReactNode }) => {
@@ -31,7 +23,7 @@ export const ThemeProvider = ({children}: { children: ReactNode }) => {
                     setThemePreferenceState(pref);
                 }
             } catch (error) {
-                console.error('Failed to load theme preference from storage', error);
+                console.error('Failed to load theme preference', error);
             } finally {
                 setIsThemeLoading(false);
             }
@@ -39,14 +31,13 @@ export const ThemeProvider = ({children}: { children: ReactNode }) => {
         loadThemePreference();
     }, [setColorScheme]);
 
-
     const setThemePreference = useCallback(async (preference: ThemePreference) => {
         setColorScheme(preference);
         setThemePreferenceState(preference);
         try {
             await SecureStore.setItemAsync(THEME_PREFERENCE_KEY, preference);
         } catch (error) {
-            console.error('Failed to save theme preference to storage', error);
+            console.error('Failed to save theme preference', error);
         }
     }, [setColorScheme]);
 
@@ -54,11 +45,8 @@ export const ThemeProvider = ({children}: { children: ReactNode }) => {
         theme: colorScheme as 'light' | 'dark',
         themePreference,
         setThemePreference,
-    }), [colorScheme, themePreference, setThemePreference]);
-
-    if (isThemeLoading) {
-        return <PageLoadingSpinner/>;
-    }
+        isThemeLoading,
+    }), [colorScheme, themePreference, setThemePreference, isThemeLoading]);
 
     return (
         <ThemeContext.Provider value={value}>

@@ -10,7 +10,6 @@ export default function LanguageSettings() {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const toggleExpand = () => {
-        // Optional: Add smooth animation
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         setIsExpanded(!isExpanded);
     };
@@ -45,12 +44,12 @@ export default function LanguageSettings() {
         <View>
             <TouchableOpacity className="expandable-btn" onPress={toggleExpand}>
                 <View className="flex-row items-center">
-                    <Ionicons name="language" size={20} color="#6B7280"/>
+                    <Ionicons name="language" size={20} color="#3b82f6"/>
                     <Text className="ml-3 text-base text-primary" weight="semibold">
                         {t('changeLanguage')}
                     </Text>
                 </View>
-                <Ionicons name={isExpanded ? "chevron-up" : "chevron-down"} size={20} color="#6B7280"/>
+                <Ionicons name={isExpanded ? "chevron-up" : "chevron-down"} size={20} color="#3b82f6"/>
             </TouchableOpacity>
 
             {isExpanded && (

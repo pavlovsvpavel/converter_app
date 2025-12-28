@@ -6,7 +6,8 @@
     "paths": {
       "@/*": ["./*"],
       "@/hooks/*": ["./hooks/*"]
-    }
+    },
+    "types": ["jest"]
   },
   "include": [
     "**/*.ts",

@@ -16,6 +16,7 @@ export default function SettingsScreen() {
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{paddingVertical: 0, flexGrow: 1}}
+                keyboardShouldPersistTaps="handled"
             >
                 <View className="gap-4">
                     <Image

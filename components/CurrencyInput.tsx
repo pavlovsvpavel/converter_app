@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from '@/components/Themed';
 import {Ionicons} from "@expo/vector-icons";
 import {CurrencyInputProps} from "@/interfaces/interfaces";
+import {Pressable} from "react-native";
 
 
 export default function CurrencyInput({
@@ -10,9 +11,11 @@ export default function CurrencyInput({
                                           currencyLabel,
                                           placeholder = "0.00"
                                       }: CurrencyInputProps) {
+
+    const inputRef = useRef<React.ComponentRef<typeof TextInput>>(null);
+
     return (
         <View className="relative justify-center">
-            {/* Left Container: Label + Clear Button */}
             <View className="absolute left-4 top-[13px] z-20 flex-row items-center gap-2">
                 <Text className="text-gray-500 font-bold">
                     {currencyLabel}
@@ -28,12 +31,19 @@ export default function CurrencyInput({
                 )}
             </View>
 
+            <Pressable
+                className="absolute top-0 bottom-0 left-0 right-0 z-10"
+                onPress={() => inputRef.current?.focus()}
+            />
+
             <TextInput
+                ref={inputRef}
                 keyboardType="numeric"
                 value={value}
                 onChangeText={onChangeText}
                 placeholder={placeholder}
-                className="text-right input-default border-default text-primary w-full h-[50px] pl-24 pr-4 focus:border-blue-500 focus:ring-blue-500"
+                scrollEnabled={false}
+                className="text-right input-default border-default text-primary w-full h-[50px] pl-24 pr-4 focus:border-blue-500"
                 placeholderTextColor="#9CA3AF"
             />
         </View>

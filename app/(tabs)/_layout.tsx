@@ -7,6 +7,7 @@ import {Tabs} from "expo-router";
 import {themeColors} from "@/constants/colors";
 import React from "react";
 import {useTranslation} from "react-i18next";
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 function TabIcon({focused, color, size, name}: TabIconProps) {
     return (
@@ -22,6 +23,7 @@ function TabsLayout() {
     const {theme} = useTheme();
     const colors = themeColors[theme];
     const {t} = useTranslation();
+    const insets = useSafeAreaInsets();
 
     return (
         <CustomScreenContainer>
@@ -34,8 +36,8 @@ function TabsLayout() {
                     tabBarStyle: {
                         elevation: 0,
                         backgroundColor: colors.tabBarBackground,
-                        height: 55,
-                        paddingBottom: 10,
+                        height: 55 + insets.bottom,
+                        paddingBottom: insets.bottom,
                         paddingTop: 10,
                         borderTopWidth: 0,
                     },

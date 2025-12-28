@@ -1,12 +1,14 @@
-import {View} from "react-native";
 import './globals.css';
 import '../services/i18n';
 import {useFonts} from "expo-font";
 import {ThemeProvider} from '@/contexts/ThemeContext';
 import {useTheme} from '@/contexts/ThemeContext';
 import {StatusBar} from 'expo-status-bar';
-import {PageLoadingSpinner} from "@/components/PageLoadingSpinner";
 import {Stack} from "expo-router";
+import * as SplashScreen from 'expo-splash-screen';
+import {useEffect} from "react";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
     return (
@@ -17,9 +19,9 @@ export default function RootLayout() {
 }
 
 function AppContent() {
-    const {theme} = useTheme();
+    const { theme, isThemeLoading } = useTheme();
 
-    const [fontsLoaded] = useFonts({
+    const [fontsLoaded, fontError] = useFonts({
         'ubuntu-normal': require('../assets/fonts/Ubuntu-Regular.ttf'),
         'ubuntu-bold': require('../assets/fonts/Ubuntu-Bold.ttf'),
         'ubuntu-semibold': require('../assets/fonts/Ubuntu-Medium.ttf'),
@@ -27,14 +29,14 @@ function AppContent() {
         'ubuntu-italic': require('../assets/fonts/Ubuntu-Italic.ttf'),
     });
 
-    const isAppLoading = !fontsLoaded;
+    useEffect(() => {
+        if (fontsLoaded || fontError) {
+            SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded, fontError, isThemeLoading]);
 
-    if (isAppLoading) {
-        return (
-            <View className="flex-1 justify-center items-center">
-                <PageLoadingSpinner/>
-            </View>
-        );
+    if (!fontsLoaded && !fontError) {
+        return null;
     }
 
     return (
@@ -47,12 +49,7 @@ function AppContent() {
 
 function RootNavigator() {
     return (
-        <Stack
-            screenOptions={{
-                animation: 'slide_from_right',
-                gestureEnabled: true,
-            }}
-        >
+        <Stack>
             <Stack.Screen
                 name="(tabs)"
                 options={{headerShown: false}}

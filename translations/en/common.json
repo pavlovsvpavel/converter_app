@@ -8,10 +8,13 @@
   "dark": "Dark",
   "tools": "Tools",
   "currency-converter": "Currency Converter",
+  "converted-amount": "Converted amount",
   "currency": "Currency",
   "change-calculator": "Change Calculator",
-  "bill-amount": "Bill Amount",
-  "paid-amount": "Paid Amount",
-  "change-to-return": "Change to return",
+  "bill-amount": "Total amount",
+  "please-enter-bill-amount": "Please enter total amount",
+  "paid-amount": "Amount in cash",
+  "please-enter-paid-amount": "Please enter amount in cash",
+  "change-to-return": "Change",
   "rate": "Exchange rate"
 }

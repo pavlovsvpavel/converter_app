@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 import {
     Text as DefaultText,
     View as DefaultView,
@@ -35,19 +35,22 @@ type AppTextInputProps = TextInputProps & {
     weight?: FontWeight;
 };
 
-export function TextInput({weight = 'normal', className, ...props}: AppTextInputProps) {
-    const weightToClassMap: Record<FontWeight, string> = {
-        normal: 'font-ubuntu-normal',
-        bold: 'font-ubuntu-bold',
-        semibold: 'font-ubuntu-semibold',
-        light: 'font-ubuntu-light',
-        italic: 'font-ubuntu-italic',
-    };
+export const TextInput = forwardRef<DefaultTextInput, AppTextInputProps>(
+    ({weight = 'normal', className, ...props}, ref) => {
+        const weightToClassMap: Record<FontWeight, string> = {
+            normal: 'font-ubuntu-normal',
+            bold: 'font-ubuntu-bold',
+            semibold: 'font-ubuntu-semibold',
+            light: 'font-ubuntu-light',
+            italic: 'font-ubuntu-italic',
+        };
 
-    const finalClassName = `${weightToClassMap[weight]} ${className || ''}`;
+        const finalClassName = `${weightToClassMap[weight]} ${className || ''}`;
 
-    return <DefaultTextInput className={finalClassName} {...props} />;
-}
+        // 3. Pass the 'ref' prop down to DefaultTextInput
+        return <DefaultTextInput ref={ref} className={finalClassName} {...props} />;
+    }
+);
 
 type AppLinkProps = LinkProps & {
     weight?: FontWeight;
